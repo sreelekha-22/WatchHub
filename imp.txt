@@ -1,0 +1,3 @@
+mongodb+srv://sree123Win:<db_password>@cluster0.tyyjnf0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+Replace <db_password> with the password for the sree123Win database user. Ensure any option params are URL encoded.
