@@ -13,6 +13,7 @@ export function EditVideo(){
     let params = useParams();
     let navigate = useNavigate();
 
+   
     const formik = useFormik({
         initialValues: {VideoId:videos[0].VideoId, Title:videos[0].Title, Url:videos[0].Url, Description:videos[0].Description, Views:videos[0].Views, Likes:videos[0].Likes, Dislikes:videos[0].Dislikes, CategoryId:videos[0].CategoryId},
         onSubmit: (video)=>{
@@ -42,7 +43,7 @@ export function EditVideo(){
     useEffect(()=>{
         LoadVideo();
         LoadCategories();
-    },[])
+    })
 
    
 
@@ -52,7 +53,7 @@ export function EditVideo(){
             <form onSubmit={formik.handleSubmit}>
             <dl className="row">
                     <dt className="col-3">Video Id</dt>
-                    <dd className="col-9"><input tpye="number" onChange={formik.handleChange} value={formik.values.VideoId} name="VideoId" /></dd>
+                    <dd className="col-9"><input type="number" onChange={formik.handleChange} value={formik.values.VideoId} name="VideoId" /></dd>
                     <dt className="col-3">Title</dt>
                     <dd className="col-9"><input  type="text" onChange={formik.handleChange} value={formik.values.Title} name="Title" /></dd>
                     <dt className="col-3">URL</dt>

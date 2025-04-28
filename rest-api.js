@@ -1,8 +1,11 @@
+require('dotenv').config();
 var express = require("express");
 var mongoClient = require("mongodb").MongoClient;
 var cors = require("cors");
 
-var conString = "mongodb://127.0.0.1:27017";
+
+const conString = process.env.MONGO_URI;
+// var conString = "mongodb://127.0.0.1:27017";
 
 var app = express();
 app.use(express.urlencoded({extended:true}));
@@ -43,9 +46,11 @@ app.post("/register-user",(req, res)=>{
 });
 
 app.get("/get-admin", (req, res)=>{
+    console.log("Fetching Admin Cred.");
     mongoClient.connect(conString).then(clientObject=>{
         var database = clientObject.db("react-video-library");
         database.collection("tbladmin").find({}).toArray().then(documents=>{
+            console.log(documents);
              res.send(documents);
              res.end();
         });

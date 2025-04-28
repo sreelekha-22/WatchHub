@@ -32,12 +32,17 @@ function App() {
           <header className='p-3 d-flex justify-content-between'>
 
             <span className='h2'> <Link to="/" className='text-decoration-none text-white'>Video Library</Link> </span>
+           
+            <div>
+              <Link className='bi btn btn-success me-2 bi-person-fill' to="/register-user"> Register</Link>
+            </div>
             <div>
             <Link className='bi btn btn-warning me-2 bi-person-fill' to="/user-login"> User Login</Link>
             {
               (cookies['admin-id']==undefined)?<Link to="/admin-login" className='btn btn-danger bi bi-person'> Admin Login</Link>:<Signout/>
             }
             </div>
+
           </header>
           <section className='mt-4'>
           

@@ -19,7 +19,25 @@ export function AdminDashBoard(){
         LoadVideos();
     },[])
 
-   
+    function convertToEmbed(url) {
+        if (!url) {
+            return ""; // If url is empty or undefined, return empty string
+        }
+    
+        try {
+            const urlObj = new URL(url);
+            const videoId = urlObj.searchParams.get("v");
+            if (videoId) {
+                return `https://www.youtube.com/embed/${videoId}`;
+            } else {
+                return url; // Return original if not a watch URL
+            }
+        } catch (error) {
+            console.error("Invalid URL:", url);
+            return ""; // Return empty if URL is invalid
+        }
+    }
+    
 
     return(
         <div>
@@ -36,7 +54,15 @@ export function AdminDashBoard(){
                     videos.map(video=>
                       <tr>
                         <td>{video.Title}</td>
-                        <td><iframe width="400" height="100" src={video.Url}></iframe></td>
+                        {/* <td><iframe width="400" height="100" src={convertToEmbed(video.Url)}></iframe></td> */}
+                        <td>
+                            {video.Url ? (
+                                <iframe width="400" height="100" src={convertToEmbed(video.Url)}></iframe>
+                            ) : (
+                                <span>No preview available</span>
+                            )}
+                        </td>
+
                         <td>
                             <Link to={`/edit-video/${video.VideoId}`} className="bi bi-pen btn btn-warning"></Link>
                             <Link to={`/delete-video/${video.VideoId}`} className="bi ms-2 bi-trash-fill btn btn-danger"></Link>

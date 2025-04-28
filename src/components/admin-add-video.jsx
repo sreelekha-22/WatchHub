@@ -10,9 +10,11 @@ export function AddVideo(){
 
     let navigate = useNavigate();
 
+   
     const formik = useFormik({
         initialValues: {VideoId:0, Title:'', Url:'', Description:'', Views:0, Likes:0, Dislikes:0, CategoryId:0},
         onSubmit: (video)=>{
+           
             axios.post('http://127.0.0.1:3030/add-video',video)
             .then(()=>{
                 alert('Video Added Successfully..');
@@ -39,7 +41,7 @@ export function AddVideo(){
                 <h5 className="text-warning">Add New Video</h5>
                 <dl className="row">
                     <dt className="col-3">Video Id</dt>
-                    <dd className="col-9"><input onChange={formik.handleChange} tpye="number" name="VideoId" /></dd>
+                    <dd className="col-9"><input onChange={formik.handleChange} type="number" name="VideoId" /></dd>
                     <dt className="col-3">Title</dt>
                     <dd className="col-9"><input onChange={formik.handleChange} type="text" name="Title" /></dd>
                     <dt className="col-3">URL</dt>
